@@ -1,0 +1,22 @@
+name: Build and deploy Powershell project to Azure Function App - cipps5orq
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch: # Add this line
+env:
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: '.'
+jobs:
+  deploy:
+    runs-on: windows-latest
+    steps:
+      - name: 'Checkout GitHub Action'
+        uses: actions/checkout@v4
+      - name: 'Run Azure Functions Action'
+        uses: Azure/functions-action@v1
+        id: fa
+        with:
+          app-name: 'cipps5orq'
+          slot-name: 'Production'
+          package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_4F483D1F17C74313A031317698E360D3 }}
