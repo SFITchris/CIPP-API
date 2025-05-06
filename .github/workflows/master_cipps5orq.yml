@@ -3,7 +3,7 @@ on:
   push:
     branches:
       - master
-  workflow_dispatch: # Add this line
+  workflow_dispatch:
 env:
   AZURE_FUNCTIONAPP_PACKAGE_PATH: '.'
 jobs:
